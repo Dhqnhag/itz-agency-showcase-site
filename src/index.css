@@ -25,7 +25,7 @@
     --muted: 214 32% 91%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 222 47% 25%;
+    --accent: 265 58% 45%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
@@ -36,6 +36,9 @@
     --ring: 222 47% 11%;
 
     --radius: 0.5rem;
+    
+    --highlight: 19 99% 60%;
+    --highlight-dark: 339 90% 51%;
   }
 
   .dark {
@@ -57,7 +60,7 @@
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 217 33% 17%;
+    --accent: 265 58% 45%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 63% 31%;
@@ -66,6 +69,9 @@
     --border: 217 33% 17%;
     --input: 217 33% 17%;
     --ring: 212 27% 84%;
+    
+    --highlight: 19 99% 60%;
+    --highlight-dark: 339 90% 51%;
   }
 }
 
@@ -115,12 +121,12 @@
   
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200
-    bg-highlight text-navy border-2 border-highlight hover:brightness-110 hover:scale-105;
+    bg-accent text-white border-2 border-accent hover:brightness-110 hover:scale-105 shadow-lg shadow-accent/20;
   }
 
   /* Modern card styles */
   .glass-card {
-    @apply bg-white/80 dark:bg-card/80 backdrop-blur-sm border border-white/20 dark:border-white/10;
+    @apply bg-white/80 dark:bg-card/80 backdrop-blur-sm border border-white/20 dark:border-white/10 shadow-xl;
   }
 
   /* Interactive elements */
@@ -130,7 +136,18 @@
 
   /* Text gradient */
   .text-gradient {
-    @apply bg-gradient-to-r from-highlight to-highlight-dark bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent to-highlight-dark bg-clip-text text-transparent;
+  }
+  
+  /* 3D element styles */
+  .cube-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  /* Scroll button */
+  .scroll-button {
+    @apply w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg cursor-pointer transition-all duration-300 hover:scale-110;
   }
 }
 
@@ -175,6 +192,23 @@
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* 3D cube rotation */
+@keyframes cube-rotate {
+  0% {
+    transform: rotateX(0) rotateY(0);
+  }
+  50% {
+    transform: rotateX(10deg) rotateY(20deg);
+  }
+  100% {
+    transform: rotateX(0) rotateY(0);
+  }
+}
+
+.animate-cube {
+  animation: cube-rotate 8s infinite ease-in-out;
 }
 
 /* New animations based on reference video */

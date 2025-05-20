@@ -62,7 +62,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
         ref={titleRef} 
         className="text-3xl md:text-5xl font-bold mb-3 relative inline-block opacity-0 translate-y-8"
       >
-        <span className="text-highlight">#</span>{title}
+        <span className="text-highlight mr-2">—</span>{title}
         <span 
           ref={lineRef}
           className="absolute -bottom-2 left-0 w-0 h-1 bg-highlight rounded-full"
@@ -71,7 +71,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({
       {subtitle && (
         <p 
           ref={subtitleRef}
-          className="text-foreground/70 text-lg md:text-xl mt-4 max-w-2xl mx-auto opacity-0"
+          className="text-foreground/80 text-lg md:text-xl mt-4 max-w-2xl mx-auto opacity-0"
         >
           {subtitle}
         </p>

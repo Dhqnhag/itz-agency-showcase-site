@@ -65,8 +65,13 @@ export default {
 					dark: '#495670'
 				},
 				highlight: {
-					DEFAULT: '#64ffda',
-					dark: '#57cbff'
+					DEFAULT: 'hsl(var(--highlight))',
+					dark: 'hsl(var(--highlight-dark))'
+				},
+				purple: {
+					light: '#9D7FEA',
+					DEFAULT: '#7c3aed',
+					dark: '#5b21b6'
 				}
 			},
 			borderRadius: {
@@ -98,6 +103,11 @@ export default {
 				'fade-in-left': {
 					'0%': { opacity: '0', transform: 'translateX(20px)' },
 					'100%': { opacity: '1', transform: 'translateX(0)' }
+				},
+				'float-object': {
+					'0%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' },
+					'100%': { transform: 'translateY(0px)' }
 				}
 			},
 			animation: {
@@ -105,8 +115,13 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out forwards',
 				'fade-in-right': 'fade-in-right 0.5s ease-out forwards',
-				'fade-in-left': 'fade-in-left 0.5s ease-out forwards'
+				'fade-in-left': 'fade-in-left 0.5s ease-out forwards',
+				'float': 'float-object 3s ease-in-out infinite'
 			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
