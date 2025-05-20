@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -5,19 +6,19 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 relative overflow-hidden group z-10",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 after:content-[''] after:absolute after:h-full after:w-full after:top-0 after:left-0 after:bg-gradient-to-r after:from-purple-400 after:via-accent after:to-highlight after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 hover:text-white",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 after:content-[''] after:absolute after:h-full after:w-full after:top-0 after:left-0 after:bg-gradient-to-r after:from-red-600 after:to-pink-600 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-background hover:bg-accent/20 hover:text-accent-foreground hover:border-accent after:content-[''] after:absolute after:h-full after:w-full after:top-0 after:left-0 after:bg-gradient-to-r after:from-accent/10 after:to-highlight/20 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:-z-10",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 after:content-[''] after:absolute after:h-full after:w-full after:top-0 after:left-0 after:bg-gradient-to-b after:from-highlight/30 after:to-accent/30 after:origin-top after:scale-y-0 hover:after:scale-y-100 after:transition-transform after:duration-300 after:-z-10",
+        ghost: "hover:bg-accent/20 hover:text-accent-foreground relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0 after:bg-gradient-to-r after:from-highlight/30 after:to-accent/30 hover:after:h-full after:transition-all after:duration-300 after:-z-10",
+        link: "text-primary underline-offset-4 hover:underline hover:text-accent transition-colors",
       },
       size: {
         default: "h-10 px-4 py-2",
