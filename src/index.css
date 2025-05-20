@@ -76,6 +76,21 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted));
+    border-radius: 20px;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -83,7 +98,7 @@
   }
   
   .section {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
   }
   
   .container-custom {
@@ -92,12 +107,72 @@
   
   /* Custom button styles */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-5 py-3 rounded-md text-sm font-medium transition-all duration-200
-    border border-highlight text-highlight bg-transparent hover:bg-highlight/10;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200
+    border-2 border-highlight text-highlight bg-transparent hover:bg-highlight/10 hover:scale-105 relative 
+    overflow-hidden z-10 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0 
+    after:bg-highlight/10 after:-z-10 after:transition-all after:duration-300 hover:after:h-full;
   }
   
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-5 py-3 rounded-md text-sm font-medium transition-all duration-200
-    bg-highlight text-navy border border-highlight hover:brightness-110;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200
+    bg-highlight text-navy border-2 border-highlight hover:brightness-110 hover:scale-105;
   }
+
+  /* Modern card styles */
+  .glass-card {
+    @apply bg-white/80 dark:bg-card/80 backdrop-blur-sm border border-white/20 dark:border-white/10;
+  }
+
+  /* Interactive elements */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-highlight to-highlight-dark bg-clip-text text-transparent;
+  }
+}
+
+/* Enhanced animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s infinite;
+}
+
+/* Reveal animations */
+.reveal {
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
