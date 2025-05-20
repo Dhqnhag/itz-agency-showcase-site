@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { ArrowRight } from "lucide-react";
 
 interface ProjectCardProps {
@@ -7,16 +7,47 @@ interface ProjectCardProps {
   description: string;
   image: string;
   tags: string[];
+  delay?: number;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ 
   title, 
   description, 
   image,
-  tags
+  tags,
+  delay = 0
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            cardRef.current?.classList.add('project-reveal');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    if (cardRef.current) observer.observe(cardRef.current);
+    
+    return () => {
+      if (cardRef.current) observer.unobserve(cardRef.current);
+    };
+  }, [delay]);
+
   return (
-    <div className="bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-border/50 group h-full flex flex-col">
+    <div 
+      ref={cardRef}
+      className="bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-border/50 relative group h-full flex flex-col opacity-0 translate-y-16"
+    >
       <div className="relative overflow-hidden h-52">
         <img 
           src={image} 
@@ -34,7 +65,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {tags.map((tag, index) => (
             <span 
               key={index} 
-              className="text-xs px-3 py-1.5 rounded-full bg-muted text-foreground/70 border border-border/30"
+              className="text-xs px-3 py-1.5 rounded-full bg-muted text-foreground/70 border border-border/30 transform transition-transform duration-300 hover:scale-105"
             >
               {tag}
             </span>
